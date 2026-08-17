@@ -43,7 +43,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // available during SSR, so this can't be a lazy useState initializer
   // without causing a hydration mismatch (server renders "loading", client
   // would otherwise render real content on that same first pass).
-  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const storedToken = getToken();
     if (storedToken) {
@@ -56,7 +55,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     setIsLoading(false);
   }, []);
-  /* eslint-enable react-hooks/set-state-in-effect */
 
   function persistSession(auth: AuthResponse) {
     const { token: newToken, ...authUser } = auth;
